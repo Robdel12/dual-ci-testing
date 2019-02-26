@@ -51,6 +51,8 @@ jobs:
       - run:
           name: Run Percy Project 2
           command: yarn project:2
+  # percy/finalize_all:
+  #   percy_token: "$PROJECT2_TOKEN"
 
 workflows:
   version: 2.1
@@ -66,4 +68,3 @@ workflows:
       - percy/finalize_all:
          requires:
            - test_1
-         percy_token: "$PROJECT2_TOKEN"
