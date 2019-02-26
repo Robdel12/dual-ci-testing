@@ -66,3 +66,4 @@ workflows:
       - percy/finalize_all:
          requires:
            - test_1
+         percy_token: "$PROJECT2_TOKEN"
