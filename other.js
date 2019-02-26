@@ -8,12 +8,11 @@ const {percySnapshot} = require('@percy/puppeteer');
     args: ['–no-sandbox', '–disable-setuid-sandbox', '--single-process']
   });
   const page = await browser.newPage();
-  await page.setBypassCSP(true);
 
   await page.goto('https://robertdelu.ca');
   await percySnapshot(page, 'homepage');
 
-  await page.goto('https://robertdelu.ca/blog');
+  await page.goto('https://robertdelu.ca/posts');
   await percySnapshot(page, 'blog page');
 
   await browser.close();
