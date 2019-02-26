@@ -13,7 +13,7 @@ references:
 
 version: 2.1
 orbs:
-  agent: percy/agent@0.1.3
+  percy: percy/agent@0.1.3
 jobs:
   install:
     <<: *defaults
