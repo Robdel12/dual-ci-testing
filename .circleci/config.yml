@@ -51,8 +51,12 @@ jobs:
       - run:
           name: Run Percy Project 2
           command: yarn project:2
-  # percy/finalize_all:
-  #   percy_token: "$PROJECT2_TOKEN"
+  wrap_finalize:
+    docker:
+      - image: percyio/agent:latest
+    steps:
+      - run: echo 'export PERCY_TOKEN="$PROJECT1_TOKEN"' >> $BASH_ENV
+      - percy/finalize_all
 
 workflows:
   version: 2.1
@@ -65,6 +69,6 @@ workflows:
       - test_2:
           requires:
             - install
-      - percy/finalize_all:
+      - wrap_finalize:
          requires:
            - test_1
