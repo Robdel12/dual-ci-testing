@@ -14,9 +14,6 @@ references:
 version: 2.1
 orbs:
   percy: percy/agent@0.1.3
-    parameters:
-      percy_token:
-        default: echo $PROJECT1_TOKEN
 jobs:
   install:
     <<: *defaults
