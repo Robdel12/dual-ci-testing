@@ -64,5 +64,7 @@ workflows:
           requires:
             - install
       - percy/finalize_all:
+          parameters:
+            percy_token: $PROJECT2_TOKEN
          requires:
            - test_1
