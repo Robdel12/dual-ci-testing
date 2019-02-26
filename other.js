@@ -5,7 +5,7 @@ const {percySnapshot} = require('@percy/puppeteer');
   const browser = await puppeteer.launch({
     headless: true,
     // for CI
-    args: ['–no-sandbox', '–disable-setuid-sandbox']
+    args: ['–no-sandbox', '–disable-setuid-sandbox', '--single-process']
   });
   const page = await browser.newPage();
 
