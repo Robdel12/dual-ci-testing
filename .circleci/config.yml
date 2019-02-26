@@ -40,7 +40,7 @@ jobs:
     steps:
       - *attach_workspace
       - run: echo 'export PERCY_TOKEN="$PROJECT1_TOKEN"' >> $BASH_ENV
-      - run: echo 'export PERCY_PARALLEL=-1' >> $BASH_ENV
+      - run: echo 'export PERCY_PARALLEL_TOTAL=-1' >> $BASH_ENV
       - run:
           name: Run Percy Project 1
           command: yarn project:1
