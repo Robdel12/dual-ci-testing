@@ -35,19 +35,23 @@ jobs:
             - .ssh
   test_1:
     <<: *defaults
+    environment:
+      PERCY_TOKEN: "$PROJECT1_TOKEN"
     steps:
       - *attach_workspace
       - run:
           name: Run Percy Project 1
-          command: PERCY_TOKEN=$PROJECT1_TOKEN yarn project:1
+          command: yarn project:1
 
   test_2:
     <<: *defaults
+    environment:
+      PERCY_TOKEN: "$PROJECT2_TOKEN"
     steps:
       - *attach_workspace
       - run:
           name: Run Percy Project 2
-          command: PERCY_TOKEN=$PROJECT2_TOKEN yarn project:2
+          command: yarn project:2
 
 workflows:
   version: 2.1
