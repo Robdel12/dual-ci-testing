@@ -1,0 +1,14 @@
+{
+  "name": "dual-ci",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "project:1": "percy exec -- node ./index.js",
+    "project:2": "percy exec -- node ./other.js"
+  },
+  "devDependencies": {
+    "@percy/puppeteer": "^1.0.5",
+    "puppeteer": "^1.12.2"
+  }
+}
