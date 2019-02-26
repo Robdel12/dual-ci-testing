@@ -1,0 +1,66 @@
+references:
+  defaults: &defaults
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:8-browsers
+
+  cache_key: &cache_key
+    todo-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: ~/
+
+version: 2.1
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore cache
+          key: *cache_key
+      - run:
+          name: Install dependencies
+          command: yarn
+      - save_cache:
+          name: Save cache
+          key: *cache_key
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+            - .ssh
+  test_1:
+    <<: *defaults
+    environment:
+      PERCY_TOKEN: $PROJECT1_TOKEN
+    steps:
+      - *attach_workspace
+      - run:
+          name: Run Percy Project 1
+          command: yarn project:1
+
+  test_2:
+    <<: *defaults
+    environment:
+      PERCY_TOKEN: $PROJECT2_TOKEN
+    steps:
+      - *attach_workspace
+      - run:
+          name: Run Percy Project 2
+          command: yarn project:2
+
+workflows:
+  version: 2.1
+  default:
+    jobs:
+      - install
+      - test_1:
+          requires:
+            - install
+      - test_2:
+          requires:
+            - install
