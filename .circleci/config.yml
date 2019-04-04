@@ -56,7 +56,7 @@ jobs:
           condition: always
           steps:
             - run:
-                name: Export the proper token
+                name: Export the proper token.
                 command: echo 'export PERCY_TOKEN="$PROJECT1_TOKEN"' >> $BASH_ENV
             - run:
                 name: Finalize
