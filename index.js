@@ -1,6 +1,9 @@
 const puppeteer = require('puppeteer');
 const {percySnapshot} = require('@percy/puppeteer');
 
+throw 'FAIL THE BUILD'
+process.exit()
+
 (async () => {
   const browser = await puppeteer.launch({
     headless: true,
@@ -11,7 +14,6 @@ const {percySnapshot} = require('@percy/puppeteer');
 
   await page.goto('https://percy.io');
   await page.waitFor(2000);
-  throw 'FAIL THE BUILD'
   await percySnapshot(page, 'homepage');
 
   await page.goto('https://percy.io/pricing');
