@@ -52,13 +52,15 @@ jobs:
   finalize_percy:
     <<: *defaults
     steps:
-      - run:
-          name: Export the proper token
-          command: echo 'export PERCY_TOKEN="$PROJECT1_TOKEN"' >> $BASH_ENV
-      - run:
-          name: Finalize
-          command: npx percy finalize --all
-          when: always
+      - when:
+          condition: always
+          steps:
+            - run:
+                name: Export the proper token
+                command: echo 'export PERCY_TOKEN="$PROJECT1_TOKEN"' >> $BASH_ENV
+            - run:
+                name: Finalize
+                command: npx percy finalize --all
 
 workflows:
   version: 2.1
